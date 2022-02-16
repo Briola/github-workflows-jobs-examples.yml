@@ -11,6 +11,24 @@ jobs:
     steps:
       - name: step do job1
         run: echo Hello, world! job1.
+        on:
+   push
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: step do job build
+        run: echo Hello, world! Build.
+
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: step do deploy
+        run: echo Hello, world! Deploy.
+
 
 
   job2:
