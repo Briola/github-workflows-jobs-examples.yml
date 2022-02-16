@@ -1,4 +1,23 @@
-name: jobs examples
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: create an artifact for reuse (changed)
+        run: echo “Full featured artifact” > build-result.txt
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-result
+          path: build-result.txt
 
-on:
-   push
+  deploy:
+    if: "contains(github.event.head_commit.message, '[deploy]')"
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: build-result
+          path: build-result.txt
+      - name: use of artifact created
+        run: ls build-result.txt
+
