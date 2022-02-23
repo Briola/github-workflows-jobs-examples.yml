@@ -10,7 +10,7 @@ jobs:
       - name: Example of use of marketplace
         uses: actions/setup-node@v2
         with:
-          node-version: '14'
+          node-version: '17'
       - name: shows node version configured.
         run: node --version
 
