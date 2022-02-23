@@ -14,4 +14,15 @@ jobs:
       - name: shows node version configured.
         run: node --version
 
- 
+  hello_world_job:
+    runs-on: ubuntu-latest
+    name: Example of custom action
+    steps:
+      - name: Checkout Actions
+        uses: actions/checkout@v2
+      - id: step-caller
+        uses: "./.github/actions/hello"
+        with:
+          the-caller: 'Myself'
+      - run: echo random-number ${{ steps.step-caller.outputs.random-number }}
+        shell: bash
