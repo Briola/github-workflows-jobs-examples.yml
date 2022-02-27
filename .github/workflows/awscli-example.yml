@@ -10,6 +10,18 @@ jobs:
     steps:
     - uses: actions/checkout@v2   
     - uses: actions/upload-artifact@v2
+      name: AWS CLI example
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2   
+    - uses: actions/upload-artifact@v2
       with:
         name: deploy
         path: README.md
